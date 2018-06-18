@@ -1,7 +1,7 @@
 require 'uinput/device'
 
 device = Uinput::Device.new do
-    self.name = "Our virtual device"
+    self.name = "Virtual mouse device"
     self.type = LinuxInput::BUS_VIRTUAL
     # self.add_key(:KEY_A)
 
@@ -13,11 +13,8 @@ device = Uinput::Device.new do
     self.add_key(:BTN_RIGHT)
     self.add_rel_event(:REL_X)
     self.add_rel_event(:REL_Y)
-
 end
 
-# kedevice.send_event(:EV_KEY, :KEY_A, 1)
-device.send_event(:EV_SYN, :SYN_REPORT)
 
 10.times do 
   device.send_event(:EV_REL, :REL_X, 10)

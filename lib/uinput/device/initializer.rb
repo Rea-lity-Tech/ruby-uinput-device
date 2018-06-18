@@ -46,7 +46,7 @@ module Uinput
       def version=(version)
         @device[:id][:version] = version
       end
-
+      
       def add_key(key)
         @file.ioctl(UI_SET_KEYBIT, (key.is_a? Symbol) ? LinuxInput.const_get(key) : key)
       end
@@ -58,6 +58,10 @@ module Uinput
 
       def add_rel_event(event)
         @file.ioctl(UI_SET_RELBIT, (event.is_a? Symbol) ? LinuxInput.const_get(event) : event)
+      end
+
+      def add_abs_event(event)
+        @file.ioctl(UI_SET_ABSBIT, (event.is_a? Symbol) ? LinuxInput.const_get(event) : event)
       end
       
       def create
